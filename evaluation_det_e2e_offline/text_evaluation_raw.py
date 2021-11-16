@@ -7,7 +7,6 @@ import logging
 import numpy as np
 import os
 import re
-import torch
 from collections import OrderedDict
 
 import glob
@@ -22,12 +21,12 @@ class TextEvaluator():
     Evaluate text proposals and recognition.
     """
 
-    def __init__(self, dataset_name, cfg, distributed, output_dir=None):
+    def __init__(self, dataset_name, cfg, distributed, output_dir=None, filepath=None):
         self._tasks = ("polygon", "recognition")
         self._distributed = distributed
         self._output_dir = output_dir
+        self.filePath = filepath
 
-        self._cpu_device = torch.device("cpu")
         self._logger = logging.getLogger(__name__)
 
         # use dataset_name to decide eval_gt_path
@@ -52,7 +51,7 @@ class TextEvaluator():
         for input, output in zip(inputs, outputs):
             prediction = {"image_id": input["image_id"]}
 
-            instances = output["instances"].to(self._cpu_device)
+            instances = output["instances"]
             prediction["instances"] = instances_to_coco_json(
                 instances, input["image_id"])
             self._predictions.append(prediction)
@@ -179,7 +178,7 @@ class TextEvaluator():
         return text_eval_script.text_eval_main(det_file=result_path, gt_file=gt_path, is_word_spotting=self._word_spotting)
 
     def evaluate(self):
-        file_path = os.path.join(self._output_dir, "text_results.json")
+        file_path = self.filePath
 
         self._results = OrderedDict()
 
