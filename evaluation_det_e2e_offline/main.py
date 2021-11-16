@@ -1,4 +1,11 @@
-from text_evaluation import TextEvaluator
+eval_mode = 'BASE'
+
+if eval_mode == 'BASE':
+    from text_evaluation_raw import TextEvaluator
+elif eval_mode == 'VIN':
+    from text_evaluation_raw import TextEvaluator
+else:
+    ValueError('eval_mode not found')
 
 eval_dataset = 'vintext'
 if eval_dataset == 'ctw1500':
