@@ -31,17 +31,17 @@ class TextEvaluator():
 
         # use dataset_name to decide eval_gt_path
         if "totaltext" in dataset_name:
-            self._text_eval_gt_path = "datasets/evaluation/gt_totaltext.zip"
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/gt_totaltext.zip"
             self._word_spotting = True
         elif "ctw1500" in dataset_name:
-            self._text_eval_gt_path = "datasets/evaluation/gt_ctw1500.zip"
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/gt_ctw1500.zip"
             self._word_spotting = False
         elif "custom" in dataset_name:
-            self._text_eval_gt_path = "datasets/evaluation/gt_custom.zip"
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/gt_custom.zip"
             self._word_spotting = False
         elif "vintext" in dataset_name:
-            self._text_eval_gt_path = "datasets/evaluation/gt_vintext.zip"
-            self._word_spotting = False
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/gt_vintext.zip"
+            self._word_spotting = True
         self._text_eval_confidence = cfg['INFERENCE_TH_TEST']
 
     def reset(self):
