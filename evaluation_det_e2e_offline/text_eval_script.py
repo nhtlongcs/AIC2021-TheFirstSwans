@@ -444,8 +444,8 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
                                 # det_only_correct = True
                                 # detOnlyCorrect += 1
                                 if evaluationParams["WORD_SPOTTING"]:
-                                    print(gtTrans[gtNum], " ",
-                                          detTrans[detNum])
+                                    # print(gtTrans[gtNum], " ",
+                                    #       detTrans[detNum])
                                     edd = lstn.distance(
                                         gtTrans[gtNum].upper(), detTrans[detNum].upper())
                                     if edd <= 0:
@@ -565,7 +565,12 @@ def evaluate_method(gtFilePath, submFilePath, evaluationParams):
     det_only_methodMetrics = r"DETECTION_ONLY_RESULTS: precision: {}, recall: {}, hmean: {}".format(
         det_only_methodPrecision, det_only_methodRecall, det_only_methodHmean
     )
-
+    print(r"E2E_RESULTS: precision, recall, hmean: {}, {}, {}".format(
+        methodPrecision, methodRecall, methodHmean
+    ))
+    print(r"DETECTION_ONLY_RESULTS: precision, recall, hmean: {}, {}, {}".format(
+        det_only_methodPrecision, det_only_methodRecall, det_only_methodHmean
+    ))
     resDict = {
         "calculated": True,
         "Message": "",
