@@ -1,3 +1,4 @@
+import ast
 from tqdm.auto import tqdm
 import argparse
 import pandas as pd
@@ -35,11 +36,11 @@ if __name__ == '__main__':
         folder_out = args.out / p.stem
         folder_out.mkdir(exist_ok=True, parents=True)
         image_ids = df['image_id'].unique()
-
         for image_id in tqdm(image_ids):
             df_image = df[df['image_id'] == image_id]
             with open(folder_out / f'{image_id}.txt', 'w') as f:
                 for i in range(len(df_image)):
                     row = df_image.iloc[i]
-                    line = f"{','.join(row['polygon'])}, {df_image.iloc[i]['text']}\n"
+                    poly = [str(x) for x in ast.literal_eval(row['polygon'])]
+                    line = f"{','.join(poly)},{df_image.iloc[i]['text']}\n"
                     f.write(line)

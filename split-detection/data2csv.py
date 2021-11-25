@@ -55,7 +55,7 @@ if __name__ == '__main__':
                 poly = polygon_from_points(pts)
                 if (txt.isspace() or txt == '' or poly.area == 0):
                     continue
-                polygon.append(line[:8])
+                polygon.append(pts)
                 area.append(poly.area)
                 image_id.append(path.stem)
                 class_id.append(1)
