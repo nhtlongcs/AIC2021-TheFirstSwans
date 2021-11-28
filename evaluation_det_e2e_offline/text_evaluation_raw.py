@@ -41,7 +41,25 @@ class TextEvaluator():
             self._word_spotting = False
         elif "vintext" in dataset_name:
             self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/gt_vintext.zip"
-            self._word_spotting = True
+            self._word_spotting = False
+        elif "0" in dataset_name:
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/0.zip"
+            self._word_spotting = False
+        elif "1" in dataset_name:
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/1.zip"
+            self._word_spotting = False
+        elif "2" in dataset_name:
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/2.zip"
+            self._word_spotting = False
+        elif "3" in dataset_name:
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/3.zip"
+            self._word_spotting = False
+        elif "4" in dataset_name:
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/4.zip"
+            self._word_spotting = False
+        elif "TESTA" in dataset_name:
+            self._text_eval_gt_path = f"{os.path.dirname(__file__)}/datasets/evaluation/TESTA.zip"
+            self._word_spotting = False
         self._text_eval_confidence = cfg['INFERENCE_TH_TEST']
 
     def reset(self):
