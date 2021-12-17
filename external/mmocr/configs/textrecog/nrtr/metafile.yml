@@ -1,0 +1,86 @@
+Collections:
+- Name: NRTR
+  Metadata:
+    Training Data: OCRDataset
+    Training Techniques:
+      - Adam
+    Epochs: 5
+    Batch Size: 8192
+    Training Resources: 64x GeForce GTX 1080 Ti
+    Architecture:
+      - ResNet31OCR
+      - TFEncoder
+      - TFDecoder
+  Paper:
+    URL: https://arxiv.org/pdf/1806.00926.pdf
+    Title: 'NRTR: A No-Recurrence Sequence-to-Sequence Model For Scene Text Recognition'
+  README: configs/textrecog/nrtr/README.md
+
+Models:
+  - Name: nrtr_r31_1by16_1by8_academic
+    In Collection: NRTR
+    Config: configs/textrecog/nrtr/nrtr_r31_1by16_1by8_academic.py
+    Metadata:
+      Training Data:
+        - SynthText
+        - Syn90k
+    Results:
+      - Task: Text Recognition
+        Dataset: IIIT5K
+        Metrics:
+          word_acc: 93.9
+      - Task: Text Recognition
+        Dataset: SVT
+        Metrics:
+          word_acc: 80.0
+      - Task: Text Recognition
+        Dataset: ICDAR2013
+        Metrics:
+          word_acc: 93.5
+      - Task: Text Recognition
+        Dataset: ICDAR2015
+        Metrics:
+          word_acc: 74.5
+      - Task: Text Recognition
+        Dataset: SVTP
+        Metrics:
+          word_acc: 78.5
+      - Task: Text Recognition
+        Dataset: CT80
+        Metrics:
+          word_acc: 86.5
+    Weights: https://download.openmmlab.com/mmocr/textrecog/nrtr/nrtr_r31_academic_20210406-954db95e.pth
+
+  - Name: nrtr_r31_1by8_1by4_academic
+    In Collection: NRTR
+    Config: configs/textrecog/nrtr/nrtr_r31_1by8_1by4_academic.py
+    Metadata:
+      Training Data:
+        - SynthText
+        - Syn90k
+    Results:
+      - Task: Text Recognition
+        Dataset: IIIT5K
+        Metrics:
+          word_acc: 94.7
+      - Task: Text Recognition
+        Dataset: SVT
+        Metrics:
+          word_acc: 87.5
+      - Task: Text Recognition
+        Dataset: ICDAR2013
+        Metrics:
+          word_acc: 93.3
+      - Task: Text Recognition
+        Dataset: ICDAR2015
+        Metrics:
+          word_acc: 75.1
+      - Task: Text Recognition
+        Dataset: SVTP
+        Metrics:
+          word_acc: 78.9
+      - Task: Text Recognition
+        Dataset: CT80
+        Metrics:
+          word_acc: 87.9
+    Weights: https://download.openmmlab.com/mmocr/textrecog/nrtr/nrtr_r31_1by8_1by4_academic_20210406-ce16e7cc.pth
